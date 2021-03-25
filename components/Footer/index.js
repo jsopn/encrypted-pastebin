@@ -17,7 +17,7 @@ export default function Footer () {
   return (
     <footer className="p-5 container mx-auto text-center">
       <p className="text-gray-600 text-xs">
-        legal issues: jsopn@pm.me :: pastes created: {count || '(loading)'}
+        legal issues: jsopn@pm.me :: pastes created: {count || '(loading)'} :: build id: <code className="p-1 bg-gray-800 rounded">{process.env.BUILD_ID.slice(0, 7)}</code>
       </p>
     </footer>
   )
