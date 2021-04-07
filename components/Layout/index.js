@@ -18,6 +18,10 @@ export default function Layout ({ children }) {
         <meta name="theme-color" content="#313131" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/favicon.png" />
+
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={JSON.stringify({
+          token: process.env.NEXT_PUBLIC_CFBEACON
+        })} />
       </Head>
 
       <Header />
