@@ -1,26 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import axios from 'axios'
 import Layout from '../components/Layout'
 import Alert from '../components/Alert'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import CryptoHelper from '../helpers/CryptoHelper'
 import DecryptedView from '../components/DecryptedView'
+import APIHelper from '../helpers/APIHelper'
 
 export async function getServerSideProps (ctx) {
   try {
-    const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}/api/v1/paste/${ctx.params.uuid}`, {
-      headers: {
-        'User-Agent': 'PersonalSite/v1' // TODO: Rewrite this!! This is a temporary solution.
-      }
-    })
+    const paste = await APIHelper.getPaste(ctx.params.uuid)
 
     return {
       props: {
         uuid: ctx.params.uuid,
-        data: resp.data.data
+        data: paste.data
       }
     }
   } catch (e) {

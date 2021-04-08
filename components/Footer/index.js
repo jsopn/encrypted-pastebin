@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import APIHelper from '../../helpers/APIHelper'
 
 export default function Footer () {
   const [count, setCount] = useState()
 
   useEffect(async () => {
     try {
-      const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}/api/v1/paste`)
+      const entries = await APIHelper.getTotalEntries()
 
-      setCount(resp.data.entries)
+      setCount(entries)
     } catch (e) {
       console.log(e)
     }

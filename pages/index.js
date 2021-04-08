@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
+import Head from 'next/head'
 import ReCaptcha from 'react-google-recaptcha'
 import Alert from '../components/Alert'
 import Button from '../components/Button'
@@ -9,7 +9,7 @@ import Spinner from '../components/Spinner'
 import Layout from '../components/Layout'
 import TextArea from '../components/TextArea'
 import CryptoHelper from '../helpers/CryptoHelper'
-import Head from 'next/head'
+import APIHelper from '../helpers/APIHelper'
 
 export default function Home () {
   const router = useRouter()
@@ -49,12 +49,9 @@ export default function Home () {
       if (!token) return showAlert('red', 'Failed to pass the robot test, try reloading the page.')
 
       const encrypted = CryptoHelper.encryptMessage(message, encryptionKey)
-      const resp = await axios.post(`${process.env.NEXT_PUBLIC_BASEURL}/api/v1/paste`, {
-        ...JSON.parse(encrypted.toString()),
-        token
-      })
+      const paste = await APIHelper.createPaste(encrypted, token)
 
-      await router.push(`/${resp.data.uuid}#${encryptionKey}`)
+      await router.push(`/${paste.uuid}#${encryptionKey}`)
     } catch (e) {
       showAlert('red', e.message)
     }
