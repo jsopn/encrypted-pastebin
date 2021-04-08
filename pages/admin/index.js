@@ -71,7 +71,7 @@ export default function AdminHome () {
     if (!uuid) return updatePages(page)
 
     try {
-      const resp = await APIHelper.getPaste(uuid)
+      const resp = await APIHelper.getPaste(uuid, true)
       setPastes([resp.data])
       setCount(1)
     } catch (e) {

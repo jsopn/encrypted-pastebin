@@ -17,10 +17,13 @@ async function createPaste (encrypted, token) {
   return resp.data
 }
 
-async function getPaste (uuid) {
+async function getPaste (uuid, full) {
   const resp = await API.get(`/api/v1/paste/${uuid}`, {
     headers: {
       'User-Agent': 'PersonalSite/v1'
+    },
+    params: {
+      full: Number(full)
     }
   })
 
