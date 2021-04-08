@@ -1,9 +1,19 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect } from 'react'
+import cookieCutter from 'cookie-cutter'
 import Footer from '../Footer'
 import Header from '../Header'
+import APIHelper from '../../helpers/APIHelper'
 
 export default function Layout ({ children }) {
+  useEffect(() => {
+    const jwt = cookieCutter.get('jwt')
+
+    if (jwt) {
+      APIHelper.setToken(jwt)
+    }
+  }, [])
+
   return (
     <div className="flex flex-col text-gray-200 bg-gray-900 font-mono h-screen">
       <Head>

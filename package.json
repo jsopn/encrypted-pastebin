@@ -10,7 +10,10 @@
   "dependencies": {
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
+    "cookie-cutter": "^0.2.0",
+    "cookies": "^0.8.0",
     "crypto-js": "^4.0.0",
+    "moment": "^2.29.1",
     "next": "10.0.9",
     "node-sass": "^5.0.0",
     "postcss": "^8.2.8",
