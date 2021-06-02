@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import { useRouter } from 'next/router'
 import Head from 'next/head'
 import cookieCutter from 'cookie-cutter'
 import ReCaptcha from 'react-google-recaptcha'
@@ -10,7 +9,6 @@ import Alert from '../../components/Alert'
 import APIHelper from '../../helpers/APIHelper'
 
 export default function AdminLogin () {
-  const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [code, setCode] = useState('')
