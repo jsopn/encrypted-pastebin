@@ -39,7 +39,7 @@ export default function AdminLogin () {
       const resp = await APIHelper.login(username, password, parsedCode, token)
       cookieCutter.set('jwt', resp.token)
 
-      return router.push('/admin')
+      return window.location.replace('/admin')
     } catch (e) {
       setError(e.response.data.errorMessage || e.message)
     }
